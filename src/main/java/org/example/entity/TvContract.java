@@ -6,13 +6,13 @@ import java.time.LocalDate;
  * @author Ilya Korobko
  *
  */
-public class TvContact extends Contact{
+public class TvContract extends Contract {
     /**
      * поле для хранения пакета каналов
      */
     private String channelPackage;
 
-    public TvContact(LocalDate startDate, LocalDate finishDate, int numberContact, User user, String channelPackage) {
+    public TvContract(LocalDate startDate, LocalDate finishDate, int numberContact, User user, String channelPackage) {
         super(startDate, finishDate, numberContact, user);
         this.channelPackage = channelPackage;
     }
@@ -28,9 +28,9 @@ public class TvContact extends Contact{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TvContact)) return false;
+        if (!(o instanceof TvContract)) return false;
 
-        TvContact tvContact = (TvContact) o;
+        TvContract tvContact = (TvContract) o;
         if (getId() != tvContact.getId()) return false;
         return getChannelPackage() != null ? getChannelPackage().equals(tvContact.getChannelPackage()) : tvContact.getChannelPackage() == null;
     }

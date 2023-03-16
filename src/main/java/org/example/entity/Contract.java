@@ -2,25 +2,25 @@ package org.example.entity;
 
 import java.time.LocalDate;
 /**
- * Класс сущности контакт
+ * Класс сущности контракт
  * @author Ilya Korobko
  *
  */
-public class Contact {
+public class Contract {
     /**
-     * поле уникального индетификатора контакта
+     * поле уникального индетификатора контракт
      */
     private int id;
     /**
-     * поле для хранения даты начала контакта
+     * поле для хранения даты начала контракт
      */
     private LocalDate startDate;
     /**
-     * поле для хранения даты окончания контакта
+     * поле для хранения даты окончания контракт
      */
     private LocalDate finishDate;
     /**
-     * поле для хранения номера контакта
+     * поле для хранения номера контракт
      */
     private int numberContact;
     /**
@@ -34,7 +34,7 @@ public class Contact {
 
 
 
-    public Contact(LocalDate startDate, LocalDate finishDate, int numberContact, User user) {
+    public Contract(LocalDate startDate, LocalDate finishDate, int numberContact, User user) {
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.numberContact = numberContact;
@@ -43,7 +43,7 @@ public class Contact {
     }
 
     /**
-     * метод служит для получения уникального индетификатора контакта
+     * метод служит для получения уникального индетификатора контракта
      * @return уникальный индетификатор
      */
     public int getId() {
@@ -52,7 +52,7 @@ public class Contact {
 
 
     /**
-     * метод служит для получения даты начала контакта
+     * метод служит для получения даты начала контракта
      * @return дата начала контакта
      */
     public LocalDate getStartDate() {
@@ -62,7 +62,7 @@ public class Contact {
 
 
     /**
-     * метод служит для получения даты окончания контакта
+     * метод служит для получения даты окончания контракта
      * @return дата окончания контакта
      */
     public LocalDate getFinishDate() {
@@ -72,7 +72,7 @@ public class Contact {
 
 
     /**
-     * метод служит для получения номера контакта
+     * метод служит для получения номера контракта
      * @return номера контакта
      */
     public int getNumberContact() {

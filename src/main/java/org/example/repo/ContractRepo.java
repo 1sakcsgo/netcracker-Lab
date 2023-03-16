@@ -1,35 +1,38 @@
 package org.example.repo;
 
-import org.example.entity.Contact;
+import org.example.entity.Contract;
+import org.example.exceptions.ContractNotFound;
+
+import java.util.Arrays;
 
 /**
- * Класс служит для хранения контактов
+ * Класс служит для хранения контрактов
  * @author Ilya Korobko
  *
  */
-public class ContactRepo {
+public class ContractRepo {
 
 
     /**
-     * поле для хранения контактов
+     * поле для хранения контрактов
      */
-    private Contact[]values;
+    private Contract[]values;
 
-    public ContactRepo() {
-        this.values = new Contact[0];
+    public ContractRepo() {
+        this.values = new Contract[0];
     }
 
     /**
-     *  метод добавляет контакт в репозиторий
-     * @param contact это обьект класса контакт
+     *  метод добавляет контракт в репозиторий
+     * @param contract это обьект класса контракт
      * @return возвращает true при успешном добавлении
      */
-    public boolean add(Contact contact){
+    public boolean add(Contract contract){
         try {
-            Contact[]temp=values;
-            values=new Contact[temp.length+1];
+            Contract[]temp=values;
+            values=new Contract[temp.length+1];
             System.arraycopy(temp,0,values,0,temp.length);
-            values[values.length-1]=contact;
+            values[values.length-1]= contract;
         }catch (ClassCastException ex){
             ex.printStackTrace();
         }
@@ -37,20 +40,15 @@ public class ContactRepo {
     }
 
     /**
-     *  метод возвращает кобьект контакт по id
+     *  метод возвращает кобьект контракт по id
      * @param id уникальный индетификатор контактов
      * @return  обьект контакта
      */
-     public Contact get(int id){
-        Contact contact1 = null;
-         for (Contact contact:values) {
-             if(contact.getId()==id){
-                 contact1=contact;
-             }
+     public Contract get(int id){
 
-         }
-         return contact1;
+        return Arrays.stream(values).filter(item -> item.getId()==id).findFirst().orElseThrow(()->new  ContractNotFound("Contract not found with id: " + id));
      }
+
 
     /**
      * Метод предназначен для удаления из репозитория
@@ -59,8 +57,8 @@ public class ContactRepo {
      */
      public void delete(int index){
         try{
-            Contact[]temp=values;
-            values=new Contact[temp.length-1];
+            Contract[]temp=values;
+            values=new Contract[temp.length-1];
             System.arraycopy(temp,0,values,0,index);
             int amountElemAfterIndex = temp.length-index-1;
             System.arraycopy(
@@ -73,7 +71,7 @@ public class ContactRepo {
      }
 
     /**
-     * Метод служащий для удаления контакта по индетификатору
+     * Метод служащий для удаления контракта по индетификатору
      * @param id уникальный индетификатор контактов
      */
      public void deleteById(int id){
@@ -85,18 +83,18 @@ public class ContactRepo {
      }
 
     /**
-     * Метод возвращающий массив контактов
+     * Метод возвращающий массив контрактов
      * @return массив котактов
      */
-    public Contact[] getValues() {
+    public Contract[] getValues() {
         return values;
     }
 
     /**
      * Метод служащий для установки значения
-     * @param values массив контактов
+     * @param values массив контрактов
      */
-    public void setValues(Contact[] values) {
+    public void setValues(Contract[] values) {
         this.values = values;
     }
 

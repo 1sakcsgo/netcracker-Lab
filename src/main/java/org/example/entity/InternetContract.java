@@ -6,14 +6,14 @@ import java.time.LocalDate;
  * @author Ilya Korobko
  *
  */
-public class InternetContact extends Contact{
+public class InternetContract extends Contract {
     /**
      * поле для хранения скорости интернета
      *
      */
     private int speed;
 
-    public InternetContact(int speed, LocalDate startDate, LocalDate finishDate, int numberContact, User user) {
+    public InternetContract(int speed, LocalDate startDate, LocalDate finishDate, int numberContact, User user) {
         super(startDate,finishDate,numberContact,user);
         this.speed = speed;
     }
@@ -39,7 +39,7 @@ public class InternetContact extends Contact{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        InternetContact that = (InternetContact) o;
+        InternetContract that = (InternetContract) o;
         if (getId() != that.getId()) return false;
         if (getNumberContact() != that.getNumberContact()) return false;
         if (getFinishDate() != that.getFinishDate()) return false;

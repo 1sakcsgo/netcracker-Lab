@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * @author Ilya Korobko
  *
  */
-public class MobileContact extends Contact{
+public class MobileContract extends Contract {
     /**
      * поле для хранения количества минут
      */
@@ -21,7 +21,7 @@ public class MobileContact extends Contact{
     private int countTrafic;
 
 
-    public MobileContact(LocalDate startDate, LocalDate finishDate, int numberContact, User user, int countMinuts, int countSMS, int countTrafic) {
+    public MobileContract(LocalDate startDate, LocalDate finishDate, int numberContact, User user, int countMinuts, int countSMS, int countTrafic) {
         super(startDate, finishDate, numberContact, user);
         this.countMinuts = countMinuts;
         this.countSMS = countSMS;
@@ -60,7 +60,7 @@ public class MobileContact extends Contact{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MobileContact that = (MobileContact) o;
+        MobileContract that = (MobileContract) o;
 
         if (getId() != that.getId()) return false;
         if (getCountMinuts() != that.getCountMinuts()) return false;
