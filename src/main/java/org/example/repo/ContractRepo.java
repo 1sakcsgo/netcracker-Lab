@@ -3,7 +3,9 @@ package org.example.repo;
 import org.example.entity.Contract;
 import org.example.exceptions.ContractNotFound;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Класс служит для хранения контрактов
@@ -20,6 +22,7 @@ public class ContractRepo {
 
     public ContractRepo() {
         this.values = new Contract[0];
+
     }
 
     /**
@@ -38,6 +41,26 @@ public class ContractRepo {
         }
         return false;
     }
+    /**
+     *  метод добавляет контракт в репозиторий
+     * @param contracts массив контактов
+     * @return возвращает true при успешном добавлении
+     */
+    public boolean addAll(Contract[]contracts) {
+
+        int numNew = contracts.length;
+        if (numNew == 0)
+            return false;
+        Object[] elementData;
+        final int s;
+        if (numNew > (elementData = this.values).length - (s = values.length))
+            values = (Contract[]) Arrays.copyOf(elementData, (this.values.length * 3) / 2 + 1);;
+        System.arraycopy(contracts, 0, values, s, numNew);
+
+        return true;
+    }
+
+
 
     /**
      *  метод возвращает кобьект контракт по id
@@ -96,6 +119,9 @@ public class ContractRepo {
      */
     public void setValues(Contract[] values) {
         this.values = values;
+    }
+    public int size(){
+        return this.values.length;
     }
 
 }
