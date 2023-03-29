@@ -6,6 +6,7 @@ import org.example.exceptions.ContractNotFound;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.function.Predicate;
 
 /**
  * Класс служит для хранения контрактов
@@ -61,7 +62,13 @@ public class ContractRepo {
     }
 
 
-
+    public ContractRepo SearchContratByCriteria(Predicate<Contract>predicate) {
+        ContractRepo newRepo =new ContractRepo();
+        Arrays.stream(this.values)
+                        .filter(contract ->contract!=null&&predicate
+                                .test(contract)).forEach(newRepo::add);
+        return newRepo;
+    }
     /**
      *  метод возвращает кобьект контракт по id
      * @param id уникальный индетификатор контактов
@@ -124,4 +131,11 @@ public class ContractRepo {
         return this.values.length;
     }
 
+
+    @Override
+    public String toString() {
+        return "ContractRepo{" +
+                "values=" + Arrays.toString(values) +
+                '}';
+    }
 }

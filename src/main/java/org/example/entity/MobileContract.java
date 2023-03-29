@@ -75,4 +75,13 @@ public class MobileContract extends Contract {
         result = 31 * result + getCountTrafic();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "MobileContract{" +
+                "countMinuts=" + countMinuts +
+                ", countSMS=" + countSMS +
+                ", countTrafic=" + countTrafic +
+                "} " + super.toString();
+    }
 }

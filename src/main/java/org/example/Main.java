@@ -4,9 +4,13 @@ import org.example.entity.Contract;
 import org.example.entity.MobileContract;
 import org.example.entity.TvContract;
 import org.example.entity.User;
+import org.example.repo.BubbleSorter;
 import org.example.repo.ContractRepo;
+import org.example.repo.InsertionSort;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,14 +20,13 @@ public class Main {
         User user2= new User("SDSD", LocalDate.of(2003, 3, 4),'m',"2661 45dfdsfs16 166");
         TvContract tvContact = new TvContract(LocalDate.of(2023, 3, 4),LocalDate.of(2022, 10, 17),8548513,user,"Full");
         MobileContract mobileContact = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
-        MobileContract mobileContact1 = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
+        MobileContract mobileContact1 = new MobileContract(LocalDate.of(2004, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
+        mobileContact1.setId(10L);
         MobileContract mobileContact2 = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
         MobileContract mobileContact3 = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
-        MobileContract mobileContact4 = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
+        MobileContract mobileContact4 = new MobileContract(LocalDate.of(2009, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
         MobileContract mobileContact5 = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
         MobileContract mobileContact6 = new MobileContract(LocalDate.of(2177, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
-        System.out.println(user);
-        System.out.println(user2);
         ContractRepo contractRepo = new ContractRepo();
         contractRepo.add(tvContact);
         contractRepo.add(mobileContact);
@@ -32,12 +35,15 @@ public class Main {
         contractRepo.add(mobileContact3);
         contractRepo.add(mobileContact4);
         contractRepo.add(mobileContact5);
-        contractRepo.deleteById(5);
-        Contract[]a=new Contract[2];
-        a[0]=mobileContact5;
-        a[1]=mobileContact6;
-        contractRepo.addAll(a);
+        System.out.println("До сортировки " +contractRepo);
+        Predicate<Contract>contractPredicate = contract -> contract.getStartDate().isAfter(LocalDate.of(2100,1,1));
+        BubbleSorter bubbleSorter = new BubbleSorter();
+        InsertionSort insertionSort = new InsertionSort();
+        Comparator <Contract>comparator = Comparator.comparing(Contract::getId);
+        bubbleSorter.sort(contractRepo.getValues(), comparator);
+        System.out.println("После сортировки " +contractRepo);
+        System.out.println("5555555555   "+contractRepo.SearchContratByCriteria(contractPredicate));
         System.out.println(mobileContact1.equals(mobileContact2));
-        System.out.println(user2);
+        System.out.println(contractRepo.size());
     }
 }

@@ -10,7 +10,7 @@ public class Contract {
     /**
      * поле уникального индетификатора контракт
      */
-    private int id;
+    private Long id;
     /**
      * поле для хранения даты начала контракт
      */
@@ -32,24 +32,33 @@ public class Contract {
      */
     protected static int count = 1;
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Contract(LocalDate startDate, LocalDate finishDate, int numberContact, User user) {
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.numberContact = numberContact;
         this.user = user;
-        this.id = count++;
+        this.id = (long) count++;
     }
 
     /**
      * метод служит для получения уникального индетификатора контракта
      * @return уникальный индетификатор
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     /**
      * метод служит для получения даты начала контракта
@@ -80,6 +89,14 @@ public class Contract {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", startDate=" + startDate +
+                ", finishDate=" + finishDate +
+                ", numberContact=" + numberContact +
+                ", user=" + user +
+                '}';
+    }
 }

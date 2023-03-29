@@ -5,13 +5,19 @@ import org.example.entity.MobileContract;
 import org.example.entity.TvContract;
 import org.example.entity.User;
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
+
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
 public class ContractRepoTest {
-    private static final User user= new User("SDSD", LocalDate.of(2001, 1, 1),'w',"2661 45616 166");
-    private static final User user2= new User("SDSD", LocalDate.of(2003, 3, 4),'m',"2661 45dfdsfs16 166");
+    private static final User user= new User("Коробко Илья Владимирович", LocalDate.of(2001, 1, 1),'w',"2661 45616 166");
+    private static final User user2= new User("Данченко Денис Евгеньевич", LocalDate.of(2003, 3, 4),'m',"2661 45dfdsfs16 166");
     private static final TvContract tvContact = new TvContract(LocalDate.of(2023, 3, 4),LocalDate.of(2022, 10, 17),8548513,user,"Full");
     private static final MobileContract mobileContact = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
     private static final MobileContract mobileContact1 = new MobileContract(LocalDate.of(2008, 3, 4),LocalDate.of(2010, 10, 17),8458513,user2,800,100,28);
@@ -67,6 +73,18 @@ public class ContractRepoTest {
         Assert.assertEquals(contractArrayList, Arrays.asList(contractRepo.getValues()));
 
 
+    }
+    @org.junit.Test
+    public void SearchContratByCriteria(){
+        ContractRepo contractRepo = new ContractRepo();
+        contractRepo.add(tvContact);
+        contractRepo.add(mobileContact);
+        contractRepo.add(mobileContact1);
+        ContractRepo newRepo =  contractRepo.SearchContratByCriteria(x -> x.getUser().getFio().equals("Коробко Илья Владимирович"));
+        long[] expectedIds = new long[]{2,3};
+        long[] actualIds = Arrays.stream(newRepo.getValues()).filter(Objects::nonNull).mapToLong(Contract::getId).toArray();
+        assertEquals(1, newRepo.getValues().length);
+        assertArrayEquals(expectedIds, actualIds);
     }
 
 
