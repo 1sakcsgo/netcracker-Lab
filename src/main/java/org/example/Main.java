@@ -4,9 +4,10 @@ import org.example.entity.Contract;
 import org.example.entity.MobileContract;
 import org.example.entity.TvContract;
 import org.example.entity.User;
-import org.example.repo.BubbleSorter;
+import org.example.sorters.BubbleSorter;
 import org.example.repo.ContractRepo;
-import org.example.repo.InsertionSort;
+import org.example.sorters.InsertionSort;
+import org.example.sorters.QuickSorter;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -37,10 +38,12 @@ public class Main {
         contractRepo.add(mobileContact5);
         System.out.println("До сортировки " +contractRepo);
         Predicate<Contract>contractPredicate = contract -> contract.getStartDate().isAfter(LocalDate.of(2100,1,1));
-        BubbleSorter bubbleSorter = new BubbleSorter();
-        InsertionSort insertionSort = new InsertionSort();
-        Comparator <Contract>comparator = Comparator.comparing(Contract::getId);
-        bubbleSorter.sort(contractRepo.getValues(), comparator);
+//        BubbleSorter bubbleSorter = new BubbleSorter();
+//        InsertionSort insertionSort = new InsertionSort();
+//        QuickSorter quickSorter = new QuickSorter();
+
+       // Comparator <Contract>comparator = Comparator.comparing(Contract::getId);
+      //  quickSorter.sort(contractRepo.getValues(), comparator);
         System.out.println("После сортировки " +contractRepo);
         System.out.println("5555555555   "+contractRepo.SearchContratByCriteria(contractPredicate));
         System.out.println(mobileContact1.equals(mobileContact2));

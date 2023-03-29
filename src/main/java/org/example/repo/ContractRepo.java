@@ -2,10 +2,12 @@ package org.example.repo;
 
 import org.example.entity.Contract;
 import org.example.exceptions.ContractNotFound;
+import org.example.sorters.BubbleSorter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 /**
@@ -62,6 +64,7 @@ public class ContractRepo {
     }
 
 
+
     public ContractRepo SearchContratByCriteria(Predicate<Contract>predicate) {
         ContractRepo newRepo =new ContractRepo();
         Arrays.stream(this.values)
@@ -78,7 +81,9 @@ public class ContractRepo {
 
         return Arrays.stream(values).filter(item -> item.getId()==id).findFirst().orElseThrow(()->new  ContractNotFound("Contract not found with id: " + id));
      }
-
+     public void sort( Comparator<Contract> comparator){
+         new BubbleSorter().sort(this.values,comparator);
+     }
 
     /**
      * Метод предназначен для удаления из репозитория

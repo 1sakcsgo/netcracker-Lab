@@ -1,10 +1,11 @@
-package org.example.repo;
+package org.example.sorters;
 
 import org.example.entity.Contract;
+import org.example.sorters.ISorter;
 
 import java.util.Comparator;
 
-public class BubbleSorter implements ISorter{
+public class BubbleSorter implements ISorter {
 
 
 

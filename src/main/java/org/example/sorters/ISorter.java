@@ -1,4 +1,4 @@
-package org.example.repo;
+package org.example.sorters;
 
 import org.example.entity.Contract;
 

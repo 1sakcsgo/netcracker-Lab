@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -80,11 +81,23 @@ public class ContractRepoTest {
         contractRepo.add(tvContact);
         contractRepo.add(mobileContact);
         contractRepo.add(mobileContact1);
-        ContractRepo newRepo =  contractRepo.SearchContratByCriteria(x -> x.getUser().getFio().equals("Коробко Илья Владимирович"));
+        ContractRepo newRepo =  contractRepo.SearchContratByCriteria(x -> x.getUser().getFio().equals("Данченко Денис Евгеньевич"));
         long[] expectedIds = new long[]{2,3};
         long[] actualIds = Arrays.stream(newRepo.getValues()).filter(Objects::nonNull).mapToLong(Contract::getId).toArray();
-        assertEquals(1, newRepo.getValues().length);
+        assertEquals(2, newRepo.getValues().length);
         assertArrayEquals(expectedIds, actualIds);
+    }
+    @org.junit.Test
+    public void sort(){
+        ContractRepo contractRepo = new ContractRepo();
+        Comparator<Contract> comparator = Comparator.comparing(Contract::getId);
+        contractRepo.add(tvContact);
+        contractRepo.add(mobileContact);
+        mobileContact.setId(10L);
+        contractRepo.add(mobileContact1);
+        System.out.println(Arrays.toString(contractRepo.getValues()));
+        contractRepo.sort(comparator);
+        System.out.println(Arrays.toString(contractRepo.getValues()));
     }
 
 
