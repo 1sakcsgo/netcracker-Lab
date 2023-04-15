@@ -20,6 +20,12 @@ public class MobileContract extends Contract {
      */
     private int countTrafic;
 
+    public MobileContract( int countMinuts, int countSMS, int countTrafic) {
+
+        this.countMinuts = countMinuts;
+        this.countSMS = countSMS;
+        this.countTrafic = countTrafic;
+    }
 
     public MobileContract(LocalDate startDate, LocalDate finishDate, int numberContact, User user, int countMinuts, int countSMS, int countTrafic) {
         super(startDate, finishDate, numberContact, user);

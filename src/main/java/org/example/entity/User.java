@@ -23,7 +23,7 @@ public class User {
     /**
      *поле для хранения пола
      */
-    private char sex;
+    private String sex;
     /**
      * поле для хранения серии и номера паспорта
      */
@@ -37,7 +37,10 @@ public class User {
      */
     protected static int counter = 1;
 
-    public User(String fio, LocalDate birthDate, char sex, String numberAndSeriesPasport) {
+    public User() {
+    }
+
+    public User(String fio, LocalDate birthDate, String sex, String numberAndSeriesPasport) {
 
         this.fio = fio;
         this.birthDate = birthDate;
@@ -46,6 +49,7 @@ public class User {
         this.age = Period.between(birthDate, LocalDate.now()).getYears();
         this.id = counter++;
     }
+
 
     public int getId() {
         return id;
@@ -71,11 +75,11 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public char getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

@@ -32,6 +32,9 @@ public class Contract {
      */
     protected static int count = 1;
 
+    public Contract() {
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -78,7 +81,17 @@ public class Contract {
         return finishDate;
     }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 
+    public void setFinishDate(LocalDate finishDate) {
+        this.finishDate = finishDate;
+    }
+
+    public void setNumberContact(int numberContact) {
+        this.numberContact = numberContact;
+    }
 
     /**
      * метод служит для получения номера контракта

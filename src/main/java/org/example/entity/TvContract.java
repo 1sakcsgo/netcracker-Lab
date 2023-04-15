@@ -24,6 +24,9 @@ public class TvContract extends Contract {
         return channelPackage;
     }
 
+    public TvContract(String channelPackage) {
+        this.channelPackage = channelPackage;
+    }
 
     @Override
     public boolean equals(Object o) {

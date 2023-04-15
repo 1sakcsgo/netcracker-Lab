@@ -18,6 +18,9 @@ public class InternetContract extends Contract {
         this.speed = speed;
     }
 
+    public InternetContract(int connectionSpeed) {
+        this.speed = connectionSpeed;
+    }
     /**
      * метод служащий для получения скорости интернета
      * @return скорость интернета
