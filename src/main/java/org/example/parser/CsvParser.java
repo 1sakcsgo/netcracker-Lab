@@ -15,8 +15,8 @@ import java.util.List;
 
 public class CsvParser {
     /**
-     * Проводит проверку на null(parsedContracts == null, если в csv файле есть ошибки), а затем по одному добавляет
-     * @param csvFile .csv файл с контрактами
+     * Проводит проверку на null, а затем по одному добавляет
+     * @param csvFile  файл с контрактами
      * @param repository репозиторий, в который необходимо загрузить контракты.
      */
 
@@ -28,7 +28,7 @@ public class CsvParser {
     }
 
     /**
-     * Читает .csv файл парся его построчно
+     * Читает файл парся его построчно
      * @param csvFile файл контрактов для парсинга
      * @return Список контрактов
      */
@@ -52,9 +52,9 @@ public class CsvParser {
     }
 
     /**
-     * Парсит линию, возвращая объект супертипа Contract
+     * Парсит строку, возвращая объект  Contract
      * @param line строка для парсинга
-     * @return инстанс Contract
+     * @return обьект Contract
      */
     private Contract parseLine(String line) {
         try {
@@ -79,12 +79,7 @@ public class CsvParser {
         return null;
     }
 
-    /**
-     * Парсит последние две строки возвращая инстанс конкретного репозитория
-     * @param contractType тип контракта (7 колонка, c 6 индексом)
-     * @param contractInfo информация о контракте(8 колонка, 7 индекс)
-     * @return инстанс контракта
-     */
+
     private Contract parseContractInfo(String contractType, String contractInfo) {
         if (contractType.equalsIgnoreCase("tv")) {
             return new TvContract(contractInfo);
